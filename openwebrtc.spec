@@ -27,6 +27,7 @@ BuildRequires:	libusrsctp-devel
 BuildRequires:	orc-devel >= 0.4
 BuildRequires:	pulseaudio-devel
 BuildRequires:	seed-devel
+BuildRequires:	xxd
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -120,7 +121,7 @@ cd cerbero/sources/local/openwebrtc-gst-plugins
 %configure \
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
-%{__make}
+%{__make} -j1
 
 cd ../openwebrtc
 %{__gtkdocize}
