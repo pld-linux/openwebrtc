@@ -1,0 +1,12 @@
+Remove second AC_CONFIG_MACRO_DIR, it confuses gtkdocize
+--- openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/configure.ac.orig	2015-04-24 10:45:25.000000000 +0200
++++ openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/configure.ac	2015-10-26 20:56:45.427388889 +0100
+@@ -51,8 +51,6 @@
+ fi
+ AM_CONDITIONAL(OWR_BRIDGE, test x$enable_bridge = xyes)
+ 
+-AC_CONFIG_MACRO_DIR(m4)
+-
+ # check for gobject-introspection
+ GOBJECT_INTROSPECTION_CHECK([1.30.0])
+ 
