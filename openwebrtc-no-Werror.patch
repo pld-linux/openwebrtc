@@ -1,0 +1,30 @@
+--- openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/owr/Makefile.am.orig	2015-04-24 10:45:25.000000000 +0200
++++ openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/owr/Makefile.am	2019-07-27 21:16:51.476283865 +0200
+@@ -13,7 +13,6 @@
+ AM_CFLAGS = \
+     -Wall \
+     -Wextra \
+-    -Werror \
+     $(DEBUG_CFLAGS)
+ 
+ lib_LTLIBRARIES = libopenwebrtc.la
+--- openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/local/Makefile.am.orig	2015-04-24 10:45:25.000000000 +0200
++++ openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/local/Makefile.am	2019-07-27 21:19:52.091972053 +0200
+@@ -12,7 +12,6 @@
+ AM_CFLAGS = \
+     -Wall \
+     -Wextra \
+-    -Werror \
+     $(DEBUG_CFLAGS)
+ 
+ noinst_LTLIBRARIES = libopenwebrtc_local.la
+--- openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/gst/Makefile.am.orig	2015-04-24 10:45:25.000000000 +0200
++++ openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/gst/Makefile.am	2019-07-27 21:27:26.862841681 +0200
+@@ -12,7 +12,6 @@
+ AM_CFLAGS = \
+     -Wall \
+     -Wextra \
+-    -Werror \
+     $(DEBUG_CFLAGS)
+ 
+ lib_LTLIBRARIES = libopenwebrtc_gst.la

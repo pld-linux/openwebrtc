@@ -6,18 +6,20 @@ Summary:	Flexible cross-platform WebRTC client framework based on GStreamer
 Summary(pl.UTF-8):	Elastyczny, wieloplatformowy szkielet klienta WebRTC oparty na GStreamerze
 Name:		openwebrtc
 Version:	0.3.0
-Release:	1
+Release:	2
 License:	BSD
 Group:		Libraries
 Source0:	https://github.com/EricssonResearch/openwebrtc/releases/download/v%{version}/%{name}-%{version}-linux-sources.tar.bz2
 # Source0-md5:	68c3cb69408740fd7ae94dfed6597ca8
 Patch0:		%{name}-ac.patch
+Patch1:		%{name}-no-Werror.patch
 URL:		http://www.openwebrtc.org/
 BuildRequires:	autoconf >= 2.68
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gobject-introspection-devel >= 1.30.0
 BuildRequires:	gstreamer-devel >= 1.4
 BuildRequires:	gstreamer-plugins-base-devel >= 1.4
+BuildRequires:	gstreamer-plugins-bad-devel >= 1.16
 BuildRequires:	gtk-doc >= 1.18
 BuildRequires:	json-glib-devel
 BuildRequires:	libnice-devel >= 0.1.7.1
@@ -110,6 +112,7 @@ Statyczna biblioteka OpenWebRTC.
 	--exclude cerbero/sources/local/libusrsctp-master
 
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd cerbero/sources/local/openwebrtc-gst-plugins
@@ -131,8 +134,6 @@ cd ../openwebrtc
 %{__autoheader}
 %{__automake}
 %configure \
-	GSTREAMER_SCTP_CFLAGS="-I$(pwd)/../openwebrtc-gst-plugins/gst-libs" \
-	GSTREAMER_SCTP_LIBS="-L$(pwd)/../openwebrtc-gst-plugins/gst-libs/gst/sctp/.libs -lgstsctp-1.0" \
 	--enable-owr-gst \
 	--disable-silent-rules \
 	%{!?with_static_libs:--disable-static}
@@ -141,7 +142,7 @@ cd ../openwebrtc
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -C cerbero/sources/local/openwebrtc-gst-plugins install \
+%{__make} -C cerbero/sources/local/openwebrtc-gst-plugins/gst install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__make} -C cerbero/sources/local/openwebrtc install \
@@ -164,8 +165,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc cerbero/sources/local/openwebrtc/{COPYING,README.md,ROADMAP.md}
 %attr(755,root,root) %{_bindir}/openwebrtc-daemon
-%attr(755,root,root) %{_libdir}/libgstsctp-1.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgstsctp-1.0.so.0
 %attr(755,root,root) %{_libdir}/libopenwebrtc.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libopenwebrtc.so.4201
 %attr(755,root,root) %{_libdir}/libopenwebrtc_bridge.so.*.*.*
@@ -173,19 +172,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libopenwebrtc_gst.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libopenwebrtc_gst.so.0
 %{_libdir}/girepository-1.0/Owr-0.3.typelib
-%attr(755,root,root) %{_libdir}/gstreamer-1.0/libgstsctp.so
 %attr(755,root,root) %{_libdir}/gstreamer-1.0/libgstvideorepair.so
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libgstsctp-1.0.so
 %attr(755,root,root) %{_libdir}/libopenwebrtc.so
 %attr(755,root,root) %{_libdir}/libopenwebrtc_bridge.so
 %attr(755,root,root) %{_libdir}/libopenwebrtc_gst.so
-%{_includedir}/gstreamer-1.0/gst/sctp
 %{_includedir}/owr
 %{_datadir}/gir-1.0/Owr-0.3.gir
-%{_pkgconfigdir}/gstreamer-sctp-1.0.pc
 %{_pkgconfigdir}/openwebrtc-0.3.pc
 %{_pkgconfigdir}/openwebrtc-bridge-0.3.pc
 %{_pkgconfigdir}/openwebrtc-gst-0.3.pc
@@ -193,7 +188,6 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libgstsctp-1.0.a
 %{_libdir}/libopenwebrtc.a
 %{_libdir}/libopenwebrtc_bridge.a
 %{_libdir}/libopenwebrtc_gst.a
