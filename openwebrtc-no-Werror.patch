@@ -28,3 +28,13 @@
      $(DEBUG_CFLAGS)
  
  lib_LTLIBRARIES = libopenwebrtc_gst.la
+--- openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/transport/Makefile.am.orig	2015-04-24 10:45:25.000000000 +0200
++++ openwebrtc-0.3.0-linux-sources/cerbero/sources/local/openwebrtc/transport/Makefile.am	2019-07-28 09:19:58.832904404 +0200
+@@ -14,7 +14,6 @@
+ AM_CFLAGS = \
+     -Wall \
+     -Wextra \
+-    -Werror \
+     $(DEBUG_CFLAGS)
+ 
+ noinst_LTLIBRARIES = libopenwebrtc_transport.la

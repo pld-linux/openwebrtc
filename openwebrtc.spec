@@ -6,7 +6,7 @@ Summary:	Flexible cross-platform WebRTC client framework based on GStreamer
 Summary(pl.UTF-8):	Elastyczny, wieloplatformowy szkielet klienta WebRTC oparty na GStreamerze
 Name:		openwebrtc
 Version:	0.3.0
-Release:	2
+Release:	3
 License:	BSD
 Group:		Libraries
 Source0:	https://github.com/EricssonResearch/openwebrtc/releases/download/v%{version}/%{name}-%{version}-linux-sources.tar.bz2
